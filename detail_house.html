@@ -1,0 +1,25 @@
+{% extends 'base.html' %}
+{% block content %}
+<div class="col-8 offset-1">
+   <div style="float: left; padding: 0 20px 20px 0">
+      {% for picture in media.picture_set.all %}
+        {% if forloop.first %}
+           <div><img width="200px" height="200px" src={{ media.picture.url }}></div>
+        {% else %}
+           <img width="100px" height="100px" src={{ media.picture.url }}>
+        {% endif %}
+      {% endfor %}
+   </div>
+   <div>
+      <p>物件名: {{ object.name }}</p>
+      <p>住所: {{ object.address }}</p>
+      <p>広さ: {{ object.size }}</p>
+      <p>家賃: {{ object.price }}</p>
+   </div>
+   {% comment %} <div>
+    {% if user.is_authenticated %}
+      <a class='navbar-brand' href='{% url 'house:post_house_comments' %}'>コメント画面へ</a>
+    {% endif %}
+   </div> {% endcomment %}
+</div>
+{% endblock %}
